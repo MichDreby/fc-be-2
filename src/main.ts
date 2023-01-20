@@ -13,7 +13,6 @@ import { APP_DESCRIPTION, APP_NAME, APP_VERSION } from './common/constants';
 async function bootstrap() {
   // -- App Instantiation
   const app = await NestFactory.create(AppModule);
-
   // -- Helmet
   app.use(helmet());
 

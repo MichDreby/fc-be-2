@@ -3,9 +3,8 @@ version: 0.1
 phases:
   build:
     commands:
-       - yarn ci && yarn build # clean install (yarn ci) and build (yarn build)
+       - yarn clean_install && yarn build # clean install (yarn ci) and build (yarn build)
 
 artifacts:
   files:
     - '**/*'
-

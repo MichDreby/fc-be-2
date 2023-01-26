@@ -22,6 +22,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "clean_install": "rm -rf node_modules && yarn install --frozen-lockfile",
+    "prepare": "husky install",
     "lint": "npx eslint . --ext .js,.ts && npx tsc",
     "lint-fix": "npx eslint --fix . --ext .js,.ts"
   },

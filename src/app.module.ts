@@ -9,6 +9,7 @@ import { DatabaseModule } from './database/database.module'
 import { NewsModule } from './news/news.module'
 import { PlayersModule } from './players/players.module'
 import { TeamModule } from './team/team.module'
+import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TeamModule } from './team/team.module'
     NewsModule,
     PlayersModule,
     TeamModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

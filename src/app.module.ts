@@ -10,6 +10,7 @@ import { NewsModule } from './news/news.module'
 import { PlayersModule } from './players/players.module'
 import { TeamModule } from './team/team.module'
 import { UsersModule } from './users/users.module'
+import { AssetsModule } from './assets/assets.module'
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UsersModule } from './users/users.module'
     PlayersModule,
     TeamModule,
     UsersModule,
+    AssetsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

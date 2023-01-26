@@ -8,6 +8,7 @@ import { AppService } from './app.service'
 import { DatabaseModule } from './database/database.module'
 import { NewsModule } from './news/news.module'
 import { PlayersModule } from './players/players.module'
+import { TeamModule } from './team/team.module'
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PlayersModule } from './players/players.module'
     DatabaseModule,
     NewsModule,
     PlayersModule,
+    TeamModule,
   ],
   controllers: [AppController],
   providers: [AppService],

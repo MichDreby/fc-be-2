@@ -1,8 +1,8 @@
-import { IsString } from 'class-validator';
+import { IsString } from 'class-validator'
 
 export class CreateNewsDto {
   @IsString()
-  title: string;
+  title: string
   @IsString()
-  description: string;
+  description: string
 }

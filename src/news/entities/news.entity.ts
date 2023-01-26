@@ -1,15 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity({
   name: 'news',
 })
 export class News {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: string
   @Column()
-  title: string;
+  title: string
   @Column()
-  description: string;
+  description: string
   @Column()
-  created_at: Date;
+  created_at: Date
 }

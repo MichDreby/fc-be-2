@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import * as Joi from 'joi';
+import * as Joi from 'joi'
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { DatabaseModule } from './database/database.module';
-import { NewsModule } from './news/news.module';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { DatabaseModule } from './database/database.module'
+import { NewsModule } from './news/news.module'
 
 @Module({
   imports: [

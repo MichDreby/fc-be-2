@@ -19,10 +19,7 @@ async function bootstrap() {
   app.use(helmet())
 
   // -- Cors setup
-  app.enableCors({
-    origin: false, // Specify the allowed origins.  I'm setting false to allow requests from any origin
-    // Find more configuration options here: https://github.com/expressjs/cors#configuration-options
-  })
+  app.enableCors()
 
   // -- Rate limiting: Limits the number of requests from the same IP in a period of time.
   // -- More at: https://www.npmjs.com/package/express-rate-limit

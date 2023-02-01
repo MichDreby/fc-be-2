@@ -1,5 +1,4 @@
 import { S3 } from 'aws-sdk'
-// import { fileTypeFromBuffer } from 'file-type'
 
 import { Injectable } from '@nestjs/common'
 
@@ -22,14 +21,13 @@ export class AssetsService {
     return emblemUrl
   }
 
-  async uploadEmblem(emblem: Buffer): Promise<void> {
-    // const { ext = '' } = await fileTypeFromBuffer(emblem)
+  async uploadEmblem({ buffer }: Express.Multer.File): Promise<void> {
     await s3
       .putObject({
         Bucket: BUCKET_NAME,
         Key: TEAM_EMBLEM_KEY,
         ACL: 'public-read',
-        Body: emblem,
+        Body: buffer,
       })
       .promise()
   }

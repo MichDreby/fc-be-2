@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Express } from 'express'
+
+import {
+  Controller,
+  Get,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
 
 import { AssetsService } from './assets.service'
 
@@ -12,7 +21,8 @@ export class AssetsController {
   }
 
   @Post('/emblem')
-  async uploadEmblem(@Body() emblem: Buffer) {
-    return await this.assetsService.uploadEmblem(emblem)
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return await this.assetsService.uploadEmblem(file)
   }
 }

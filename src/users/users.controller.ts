@@ -42,8 +42,9 @@ export class UserController {
   }
 
   // !important:
-  // in case of both '/batch' and ':id' path parameter
-  // place /batch path first, otherwise ':id' won't work
+  // in case of both '/batch' and ':id' endpoints are presented
+  // place /batch endpoint first, otherwise ':id' won't work
+  // or some unexpected errors might appear
   @Delete('/batch')
   async removeBatch(
     @Body(

@@ -1,12 +1,11 @@
 import { Repository } from 'typeorm'
-import { RemoveBatchUserDto } from 'src/users/dto'
 import { map } from 'lodash'
 
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 
 import { Player } from './entities/player.entity'
-import { CreatePlayerDto, UpdatePlayerDto } from './dto'
+import { CreatePlayerDto, RemoveBatchPlayerDto, UpdatePlayerDto } from './dto'
 
 @Injectable()
 export class PlayersService {
@@ -45,7 +44,7 @@ export class PlayersService {
     await this.playersRepository.delete(id)
   }
 
-  async removeBatch(ids: RemoveBatchUserDto[]): Promise<void> {
+  async removeBatch(ids: RemoveBatchPlayerDto[]): Promise<void> {
     const idsArray = map(ids, 'id')
 
     await this.playersRepository

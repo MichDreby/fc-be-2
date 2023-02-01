@@ -1,5 +1,3 @@
-import { RemoveBatchUserDto } from 'src/users/dto'
-
 import {
   Body,
   Controller,
@@ -14,7 +12,7 @@ import {
 
 import { PlayersService } from './players.service'
 import { Player } from './entities'
-import { CreatePlayerDto, UpdatePlayerDto } from './dto'
+import { CreatePlayerDto, RemoveBatchPlayerDto, UpdatePlayerDto } from './dto'
 
 @Controller('players')
 export class PlayersController {
@@ -63,10 +61,10 @@ export class PlayersController {
   async removeBatch(
     @Body(
       new ParseArrayPipe({
-        items: RemoveBatchUserDto,
+        items: RemoveBatchPlayerDto,
       }),
     )
-    ids: RemoveBatchUserDto[],
+    ids: RemoveBatchPlayerDto[],
   ): Promise<void> {
     await this.playersService.removeBatch(ids)
   }

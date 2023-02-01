@@ -1,4 +1,6 @@
 import { Repository } from 'typeorm'
+import { RemoveBatchUserDto } from 'src/users/dto'
+import { map } from 'lodash'
 
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
@@ -41,5 +43,18 @@ export class PlayersService {
 
   async remove(id: string): Promise<void> {
     await this.playersRepository.delete(id)
+  }
+
+  async removeBatch(ids: RemoveBatchUserDto[]): Promise<void> {
+    const idsArray = map(ids, 'id')
+
+    await this.playersRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Player)
+      .where('id IN (:...ids)', {
+        ids: idsArray,
+      })
+      .execute()
   }
 }

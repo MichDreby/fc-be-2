@@ -1,3 +1,5 @@
+import { RemoveBatchUserDto } from 'src/users/dto'
+
 import {
   Body,
   Controller,
@@ -51,6 +53,22 @@ export class PlayersController {
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<Player> {
     return await this.playersService.update(id, player)
+  }
+
+  // !important:
+  // in case of both '/batch' and ':id' endpoints are presented
+  // place /batch endpoint first, otherwise ':id' won't work
+  // or some unexpected errors might appear
+  @Delete('/batch')
+  async removeBatch(
+    @Body(
+      new ParseArrayPipe({
+        items: RemoveBatchUserDto,
+      }),
+    )
+    ids: RemoveBatchUserDto[],
+  ): Promise<void> {
+    await this.playersService.removeBatch(ids)
   }
 
   @Delete(':id')

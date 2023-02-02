@@ -65,8 +65,8 @@ async function bootstrap() {
 
   // todo: return default 3000 PORT
   // -- Start listening
-  // await app.listen(process.env.PORT ? parseInt(process.env.PORT) : 3000)
-  await app.listen(3001)
+  await app.listen(process.env.PORT ? parseInt(process.env.PORT) : 3000)
+  // await app.listen(300)
 }
 
 bootstrap()

@@ -3,7 +3,6 @@ import { S3 } from 'aws-sdk'
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
-const s3 = new S3()
 // todo: add BUCKET_NAME to env variables
 // const BUCKET_NAME = process.env.BUCKET_NAME
 const BUCKET_NAME = 'fc-assets-bucket'
@@ -32,7 +31,7 @@ export class AssetsService {
       Key: TEAM_EMBLEM_KEY,
     }
 
-    const emblemUrl = s3.getSignedUrl('getObject', params)
+    const emblemUrl = this.s3.getSignedUrl('getObject', params)
 
     return emblemUrl
   }

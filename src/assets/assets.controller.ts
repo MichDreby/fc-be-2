@@ -22,7 +22,7 @@ export class AssetsController {
 
   @Post('/emblem')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadEmblem(@UploadedFile() file: Express.Multer.File) {
     return await this.assetsService.uploadEmblem(file)
   }
 }

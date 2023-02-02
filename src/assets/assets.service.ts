@@ -1,6 +1,6 @@
 import { S3 } from 'aws-sdk'
 
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 
 const s3 = new S3()
 // todo: add BUCKET_NAME to env variables
@@ -22,13 +22,25 @@ export class AssetsService {
   }
 
   async uploadEmblem({ buffer }: Express.Multer.File): Promise<void> {
-    await s3
-      .putObject({
-        Bucket: BUCKET_NAME,
-        Key: TEAM_EMBLEM_KEY,
-        ACL: 'public-read',
-        Body: buffer,
-      })
-      .promise()
+    try {
+      console.log('******\n', 'uploadEmblem', buffer)
+
+      await s3
+        .putObject({
+          Bucket: BUCKET_NAME,
+          Key: TEAM_EMBLEM_KEY,
+          ACL: 'public-read',
+          Body: buffer,
+        })
+        .promise()
+
+      console.log('******\n', 'success putObject')
+    } catch (error) {
+      console.log('******\n', 'uploadEmblem error', error)
+      throw new HttpException(
+        error?.message || 'custom error',
+        error?.status || HttpStatus.PRECONDITION_FAILED,
+      )
+    }
   }
 }

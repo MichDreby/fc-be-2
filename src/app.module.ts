@@ -22,6 +22,8 @@ import { AssetsModule } from './assets/assets.module'
         NODE_ENV: Joi.string().default('development'),
         DB_URL: Joi.string().required(),
         DB_SSL: Joi.boolean().required(),
+        AWS_ACCESS_KEY_ID: Joi.string().required(),
+        AWS_SECRET_ACCESS_KEY: Joi.string().required(),
       }),
     }),
     DatabaseModule,

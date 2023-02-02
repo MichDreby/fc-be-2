@@ -1,6 +1,7 @@
 import { S3 } from 'aws-sdk'
 
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 
 const s3 = new S3()
 // todo: add BUCKET_NAME to env variables
@@ -10,6 +11,21 @@ const TEAM_EMBLEM_KEY = 'teamEmblem'
 
 @Injectable()
 export class AssetsService {
+  private s3: S3
+
+  constructor(private configService: ConfigService) {
+    // console.log('AWS_ACCESS_KEY_ID', configService.get('AWS_ACCESS_KEY_ID'))
+    // console.log(
+    //   'AWS_SECRET_ACCESS_KEY',
+    //   configService.get('AWS_SECRET_ACCESS_KEY'),
+    // )
+
+    this.s3 = new S3({
+      accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
+    })
+  }
+
   async retrieveEmblem(): Promise<string> {
     const params = {
       Bucket: BUCKET_NAME,
@@ -23,9 +39,7 @@ export class AssetsService {
 
   async uploadEmblem({ buffer }: Express.Multer.File): Promise<void> {
     try {
-      console.log('******\n', 'uploadEmblem', buffer)
-
-      await s3
+      await this.s3
         .putObject({
           Bucket: BUCKET_NAME,
           Key: TEAM_EMBLEM_KEY,
@@ -33,10 +47,7 @@ export class AssetsService {
           Body: buffer,
         })
         .promise()
-
-      console.log('******\n', 'success putObject')
     } catch (error) {
-      console.log('******\n', 'uploadEmblem error', error)
       throw new HttpException(
         error?.message || 'custom error',
         error?.status || HttpStatus.PRECONDITION_FAILED,

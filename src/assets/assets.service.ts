@@ -13,12 +13,6 @@ export class AssetsService {
   private s3: S3
 
   constructor(private configService: ConfigService) {
-    // console.log('AWS_ACCESS_KEY_ID', configService.get('AWS_ACCESS_KEY_ID'))
-    // console.log(
-    //   'AWS_SECRET_ACCESS_KEY',
-    //   configService.get('AWS_SECRET_ACCESS_KEY'),
-    // )
-
     this.s3 = new S3({
       accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
       secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),

@@ -26,7 +26,6 @@ const NODE_ENV = process.env.NODE_ENV ?? 'dev'
         DB_SSL: Joi.boolean().required(),
         AWS_ACCESS_KEY_ID: Joi.string().required(),
         AWS_SECRET_ACCESS_KEY: Joi.string().required(),
-        ENV_TEST_VAR: Joi.string().required(),
       }),
     }),
     DatabaseModule,

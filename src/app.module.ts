@@ -12,16 +12,15 @@ import { TeamModule } from './team/team.module'
 import { UsersModule } from './users/users.module'
 import { AssetsModule } from './assets/assets.module'
 
-const NODE_ENV = process.env.NODE_ENV ?? 'dev'
+const APP_ENV = process.env.APP_ENV ?? 'development'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${NODE_ENV}`,
+      envFilePath: `.env.${APP_ENV}`,
       validationSchema: Joi.object({
         PORT: Joi.number().default(3000),
-        NODE_ENV: Joi.string().default('dev'),
         DB_URL: Joi.string().required(),
         DB_SSL: Joi.boolean().required(),
         AWS_ACCESS_KEY_ID: Joi.string().required(),

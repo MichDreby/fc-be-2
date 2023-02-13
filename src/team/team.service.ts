@@ -8,10 +8,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Team } from './entities/team.entity'
 import { CreateTeamDto, UpdateTeamDto } from './dto'
 
+const { ASSETS_BUCKET_NAME } = process.env
+
 const s3 = new S3()
-// todo: add BUCKET_NAME to env variables
-// const BUCKET_NAME = process.env.BUCKET_NAME
-const BUCKET_NAME = 'fc-assets-bucket'
 const TEAM_EMBLEM_KEY = 'teamEmblem'
 
 @Injectable()
@@ -39,7 +38,7 @@ export class TeamService {
   async findOne(): Promise<Team & { emblemUrl: string }> {
     try {
       const params = {
-        Bucket: BUCKET_NAME,
+        Bucket: ASSETS_BUCKET_NAME,
         Key: TEAM_EMBLEM_KEY,
       }
 

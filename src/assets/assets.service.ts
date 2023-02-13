@@ -3,9 +3,7 @@ import { S3 } from 'aws-sdk'
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
-// todo: add BUCKET_NAME to env variables
-// const BUCKET_NAME = process.env.BUCKET_NAME
-const BUCKET_NAME = 'fc-assets-bucket'
+const { ASSETS_BUCKET_NAME } = process.env
 const TEAM_EMBLEM_KEY = 'teamEmblem'
 
 @Injectable()
@@ -21,7 +19,7 @@ export class AssetsService {
 
   async retrieveEmblem(): Promise<string> {
     const params = {
-      Bucket: BUCKET_NAME,
+      Bucket: ASSETS_BUCKET_NAME,
       Key: TEAM_EMBLEM_KEY,
     }
 
@@ -34,7 +32,7 @@ export class AssetsService {
     try {
       await this.s3
         .putObject({
-          Bucket: BUCKET_NAME,
+          Bucket: ASSETS_BUCKET_NAME,
           Key: TEAM_EMBLEM_KEY,
           ACL: 'public-read',
           Body: buffer,

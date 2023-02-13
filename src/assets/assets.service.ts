@@ -3,7 +3,7 @@ import { S3 } from 'aws-sdk'
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
-const { ASSETS_BUCKET_NAME } = process.env
+const ASSETS_BUCKET_NAME = 'fc-assets-bucket'
 const TEAM_EMBLEM_KEY = 'teamEmblem'
 
 @Injectable()

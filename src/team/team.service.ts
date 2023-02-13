@@ -8,9 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Team } from './entities/team.entity'
 import { CreateTeamDto, UpdateTeamDto } from './dto'
 
-const { ASSETS_BUCKET_NAME } = process.env
-
 const s3 = new S3()
+const ASSETS_BUCKET_NAME = 'fc-assets-bucket'
 const TEAM_EMBLEM_KEY = 'teamEmblem'
 
 @Injectable()
